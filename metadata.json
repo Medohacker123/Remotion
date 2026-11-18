@@ -1,0 +1,6 @@
+{
+  "name": "Sudan Digital Motion Studio",
+  "description": "استوديو إنتاج وتحرير الفيديو الترويجي لسودان ديجيتال — 45 ثانية @ 60fps بموشن جرافيكس 2D احترافي وتصدير MP4 مباشر.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
