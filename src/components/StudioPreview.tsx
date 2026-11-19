@@ -26,8 +26,13 @@ interface VideoInfo {
   filename: string;
   sizeBytes: number;
   durationSeconds: number;
+  totalFrames?: number;
   fps: number;
   resolution: string;
+  videoCodec?: string;
+  audioCodec?: string;
+  pixelFormat?: string;
+  fourKComposition?: string;
   downloadUrl: string;
   publicUrl: string;
 }
@@ -312,6 +317,29 @@ export const StudioPreview: React.FC = () => {
               )}
             </div>
 
+            {/* Primary download actions — always visible under the stage */}
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+              <a
+                href="/api/download-mp4"
+                download="sudan-digital-45s-60fps.mp4"
+                data-testid="download-mp4"
+                className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-[#6d28d9] hover:bg-[#7c3aed] text-white text-sm font-bold transition-colors"
+              >
+                <Download className="w-4 h-4" />
+                <span>تحميل MP4 (45s · 60fps)</span>
+              </a>
+              <a
+                href="/out/sudan-digital-45s.mp4"
+                target="_blank"
+                rel="noreferrer"
+                data-testid="open-mp4"
+                className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 text-sm font-semibold transition-colors"
+              >
+                <Film className="w-4 h-4" />
+                <span>تشغيل MP4</span>
+              </a>
+            </div>
+
             {/* Custom Transport Controls for Remotion Player */}
             {viewMode === 'remotion' && (
               <div className="w-full flex flex-col gap-3 pt-1">
@@ -481,7 +509,8 @@ export const StudioPreview: React.FC = () => {
                   <span>التصدير المباشر للهاتف (MP4)</span>
                 </h2>
                 <p className="text-xs text-slate-400">
-                  ترميز H.264 (yuv420p) + صوت AAC متوافق 100% مع iPhone و Android
+                  ترميز H.264 (yuv420p) + صوت AAC متوافق 100% مع iPhone و Android —
+                  الـ export الأساسي 1080×1920، ونسخة 4K (2160×3840) متاحة كـ composition اختيارية
                 </p>
               </div>
 
@@ -527,7 +556,8 @@ export const StudioPreview: React.FC = () => {
               <div className="flex flex-col gap-1">
                 <span className="text-slate-400">صيغة التصدير</span>
                 <span className="font-mono-num text-sm font-bold text-white">
-                  H.264 / AAC
+                  {videoInfo?.videoCodec ? videoInfo.videoCodec.toUpperCase() : 'H.264'} /{' '}
+                  {videoInfo?.audioCodec ? videoInfo.audioCodec.toUpperCase() : 'AAC'}
                 </span>
               </div>
               <div className="flex flex-col gap-1">
@@ -548,14 +578,15 @@ export const StudioPreview: React.FC = () => {
                 <span>Download MP4 (45s · 60fps)</span>
               </a>
 
-              <button
-                type="button"
-                onClick={() => setViewMode('mp4')}
+              <a
+                href="/out/sudan-digital-45s.mp4"
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 text-sm font-semibold transition-colors"
               >
                 <Play className="w-4 h-4" />
-                <span>معاينة الـ MP4 المُصدّر</span>
-              </button>
+                <span>فتح MP4 للتشغيل</span>
+              </a>
             </div>
           </section>
         </div>

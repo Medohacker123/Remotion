@@ -1,0 +1,26 @@
+{
+  "file": "sudan-digital-45s.mp4",
+  "durationSeconds": 45.0,
+  "totalFrames": 2700,
+  "fps": 60.0,
+  "resolution": "1080x1920",
+  "videoCodec": "h264",
+  "videoProfile": "High 42",
+  "pixelFormat": "yuv420p",
+  "audioCodec": "aac",
+  "audioSampleRate": 44100,
+  "audioChannels": 2,
+  "sizeBytes": 31813413,
+  "bitRate": 5655717,
+  "checks": {
+    "duration_is_45s": true,
+    "frames_2700": true,
+    "fps_60": true,
+    "size_1080x1920": true,
+    "pix_fmt_yuv420p": true,
+    "codec_h264": true,
+    "audio_aac": true,
+    "audio_44k_stereo": true
+  },
+  "allChecksPassed": true
+}
